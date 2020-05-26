@@ -6,3 +6,12 @@
   border-bottom-color: $right-bottom;
   border-right-color: $right-bottom;
 }
+
+@mixin buttons {
+  &:active {
+    border-top-color: #7b7b7b;
+    border-left-color: #7b7b7b;
+    border-bottom-color: #f9f9f9;
+    border-right-color: #f9f9f9;
+  }
+}

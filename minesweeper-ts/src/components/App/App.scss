@@ -16,10 +16,11 @@
 }
 
 .Face {
+  @include borders(#f9f9f9, #7b7b7b);
+  @include buttons;
   width: 52px;
   height: 52px;
   font-size: 35px;
-  @include borders(#f9f9f9, #7b7b7b);
   display: flex;
   justify-content: center;
   align-items: center;

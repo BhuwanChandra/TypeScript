@@ -1,7 +1,53 @@
 @import "../../styles/index.scss";
 
 .Button {
-    @include borders;
-    width: 30px;
-    height: 30px;
+  @include borders(#f9f9f9, #7b7b7b);
+  @include buttons;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+
+  &.visible {
+    border-color: #7b7b7b;
+    border-width: 1px;
+  }
+
+  span {
+    font-size: 16px;
+  }
+
+  &.value-1 {
+    color: #1717e6;
+  }
+
+  &.value-2 {
+    color: #139713;
+  }
+
+  &.value-3 {
+    color: #e00c0c;
+  }
+
+  &.value-4 {
+    color: #8a1cca;
+  }
+
+  &.value-5 {
+    color: #db10ee;
+  }
+
+  &.value-6 {
+    color: #f0960f;
+  }
+
+  &.value-7 {
+    color: #19e9ab;
+  }
+
+  &.value-8 {
+    color: #060608;
+  }
 }
