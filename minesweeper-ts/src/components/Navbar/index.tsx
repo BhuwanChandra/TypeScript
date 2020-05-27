@@ -3,7 +3,6 @@ import { changeGameLevel, MAX_COLS, MAX_ROWS } from "../../constants";
 import Modal from "../Modal";
 import "./Navbar.scss";
 
-
 interface NavbarProps {
   onChangeLevel: () => void;
 }
@@ -24,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ onChangeLevel }) => {
   const themeColor = {
     day: "#eeeeee",
     night: "#464646"
-  }
+  };
 
   const [theme, setTheme] = useState<string>(themeColor.day);
   const [gameModalOpen, setGameModalOpen] = useState<boolean>(false);
@@ -50,10 +49,10 @@ const Navbar: React.FC<NavbarProps> = ({ onChangeLevel }) => {
       setGameModalOpen(true);
     } else if (modal === modals.showControls) {
       setControlsModalOpen(true);
-    } else if(modal === modals.changeMode){
-      if(theme === themeColor.day){
+    } else if (modal === modals.changeMode) {
+      if (theme === themeColor.day) {
         setTheme(themeColor.night);
-      }else {
+      } else {
         setTheme(themeColor.day);
       }
     }
@@ -76,25 +75,25 @@ const Navbar: React.FC<NavbarProps> = ({ onChangeLevel }) => {
 
   const handleLevelChange = (e: any) => {
     const currentLevelSelection = e.target.value;
-    if(currentLevelSelection === levels.beginner){
+    if (currentLevelSelection === levels.beginner) {
       setGameOptions({
         rows: 9,
         cols: 9,
         bombs: 10
       });
-    } else if(currentLevelSelection === levels.intermediate){
+    } else if (currentLevelSelection === levels.intermediate) {
       setGameOptions({
         rows: 15,
         cols: 15,
         bombs: 30
       });
-    } else if(currentLevelSelection === levels.expert){
+    } else if (currentLevelSelection === levels.expert) {
       setGameOptions({
         rows: 15,
         cols: 30,
         bombs: 70
       });
-    }else if(currentLevelSelection === levels.custom){
+    } else if (currentLevelSelection === levels.custom) {
       setGameOptions(customGame);
     }
   };
@@ -132,7 +131,8 @@ const Navbar: React.FC<NavbarProps> = ({ onChangeLevel }) => {
       {gameModalOpen ? (
         <div>
           <Modal
-            title="Levels"
+            title="Game Levels"
+            subtitle="In custom game maximum 50 rows/columns are allowed!"
             canCancel={true}
             canConfirm={true}
             onCancel={onCancelHandler}
@@ -211,7 +211,13 @@ const Navbar: React.FC<NavbarProps> = ({ onChangeLevel }) => {
                       type="number"
                       value={customGame.rows}
                       onChange={e =>
-                        setCustomGame({ ...customGame, rows: +e.target.value })
+                        setCustomGame({
+                          ...customGame,
+                          rows:
+                            +e.target.value <= 50 && +e.target.value > 0
+                              ? +e.target.value
+                              : 50
+                        })
                       }
                     />
                   </td>
@@ -220,7 +226,13 @@ const Navbar: React.FC<NavbarProps> = ({ onChangeLevel }) => {
                       type="number"
                       value={customGame.cols}
                       onChange={e =>
-                        setCustomGame({ ...customGame, cols: +e.target.value })
+                        setCustomGame({
+                          ...customGame,
+                          cols:
+                            +e.target.value <= 50 && +e.target.value > 0
+                              ? +e.target.value
+                              : 50
+                        })
                       }
                     />
                   </td>
@@ -229,7 +241,15 @@ const Navbar: React.FC<NavbarProps> = ({ onChangeLevel }) => {
                       type="number"
                       value={customGame.bombs}
                       onChange={e =>
-                        setCustomGame({ ...customGame, bombs: +e.target.value })
+                        setCustomGame({
+                          ...customGame,
+                          bombs:
+                            +e.target.value <
+                              customGame.rows * customGame.cols &&
+                            +e.target.value > 0
+                              ? +e.target.value
+                              : customGame.rows
+                        })
                       }
                     />
                   </td>
@@ -249,16 +269,11 @@ const Navbar: React.FC<NavbarProps> = ({ onChangeLevel }) => {
           >
             <ul>
               <li>Left-click an empty square to reveal it.</li>
-              <li>Right-click (or Ctrl+click) an empty square to flag it.</li>
+              <li>Right-click an empty square to flag it.</li>
+              <li>Click the Smile face to restart the game.</li>
               <li>
-                Midde-click (or left+right click) a number to reveal its
-                adjacent squares.
+                You can set the level of game from the level tab on Navbar.
               </li>
-              <li>
-                Press space bar while hovering over a square to flag it or
-                reveal its adjacent squares.
-              </li>
-              <li>Press F2 to start a new game.</li>
             </ul>
           </Modal>
         </div>

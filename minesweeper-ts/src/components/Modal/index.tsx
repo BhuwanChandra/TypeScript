@@ -4,19 +4,21 @@ import "./Modal.scss";
 interface ModalProps {
     children?: ReactNode;
     title: string;
+    subtitle?: string;
     canCancel: boolean;
     canConfirm: boolean;
     onCancel?: () => void;
     onConfirm?: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({children, title, canCancel, canConfirm, onCancel, onConfirm}) => {
+const Modal: React.FC<ModalProps> = ({children, title, canCancel, canConfirm, onCancel, onConfirm, subtitle}) => {
     return (
         <React.Fragment>
             <div className="BackDrop"></div>
             <div className="Modal">
                 <header className="ModalHeader">
                     <h2>{title}</h2>
+                    <p>{subtitle}</p>
                 </header>
                 <section className="ModalContent">
                     {children}
