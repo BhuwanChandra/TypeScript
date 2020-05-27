@@ -35,3 +35,32 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
+
+.LavelsTable {
+  width: 100%;
+
+  &tbody {
+    width: 100%;
+  }
+}
+
+tbody {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+}
+
+tr {
+  display: grid;
+  grid-template-columns: auto 100px 100px 100px;
+  grid-template-rows: auto;
+}
+
+td {
+  @include borders(#f9f9f9, #999999);
+  padding: 5px;
+}
+
+input[type="number"] {
+  width: 75px;
+}

@@ -1,5 +1,9 @@
 @import "../../styles/index.scss";
 
+body {
+  background-color: #eeeeee;
+}
+
 .GameArea {
   min-height: 88vh;
   display: flex;

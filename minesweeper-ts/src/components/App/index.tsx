@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { MAX_COLS, MAX_ROWS } from "../../constants";
+import { MAX_COLS, MAX_ROWS, NO_OF_BOMBS } from "../../constants";
 import { Cell, CellState, CellValue, Face } from "../../types";
 import { generateCells, openMultipleCells } from "../../utils";
 import Button from "../Button";
+import Navbar from "../Navbar";
 import NumberDisplay from "../NumberDisplay";
 import "./App.scss";
 
@@ -10,10 +11,17 @@ const App: React.FC = () => {
   const [cells, setCells] = useState<Cell[][]>(generateCells());
   const [face, setFace] = useState<Face>(Face.smile);
   const [time, setTime] = useState<number>(0);
-  const [bombCounter, setBombCounter] = useState<number>(10);
+  const [bombCounter, setBombCounter] = useState<number>(NO_OF_BOMBS);
   const [live, setLive] = useState<boolean>(false);
   const [hasLost, setHasLost] = useState<boolean>(false);
   const [hasWon, setHasWon] = useState<boolean>(false);
+
+  const levelChangedHandler = () => {
+    const newCells = generateCells();
+    console.log(MAX_COLS, MAX_ROWS);
+    setCells(newCells);
+    handleFaceClick();
+  }
 
   useEffect(() => {
     const handleMouseDown = () => {
@@ -163,7 +171,7 @@ const App: React.FC = () => {
   const handleFaceClick = (): void => {
     setLive(false);
     setTime(0);
-    setBombCounter(10);
+    setBombCounter(NO_OF_BOMBS);
     setCells(generateCells());
     setHasLost(false);
     setHasWon(false);
@@ -204,6 +212,8 @@ const App: React.FC = () => {
   };
 
   return (
+    <React.Fragment>
+    <Navbar onChangeLevel={levelChangedHandler} />
     <div className="GameArea">
       <div className="App">
         <div className="Header">
@@ -215,18 +225,17 @@ const App: React.FC = () => {
           </div>
           <NumberDisplay value={time} />
         </div>
-        <div className="Body" style={bodyStyle}>
+          <div className="Body" style={{
+            display: "grid",
+            gridTemplateRows: `repeat(${MAX_ROWS}, 1fr)`,
+            gridTemplateColumns: `repeat(${MAX_COLS}, 1fr)`
+          }}>
           {renderCells()}
         </div>
       </div>
     </div>
+    </React.Fragment>
   );
-};
-
-const bodyStyle = {
-  display: "grid",
-  gridTemplateRows: `repeat(${MAX_ROWS}, 1fr)`,
-  gridTemplateColumns: `repeat(${MAX_COLS}, 1fr)`
 };
 
 export default App;
