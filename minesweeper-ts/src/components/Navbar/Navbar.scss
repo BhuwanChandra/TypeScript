@@ -1,0 +1,37 @@
+@import "../../styles/index.scss";
+
+.Navbar {
+  @include borders(#f9f9f9, #999999);
+  background-color: #c3c3c3;
+  padding: 16px 25px;
+  //   min-height: 6vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.NavBrand {
+  @include borders;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 5px 15px;
+  margin: 0;
+}
+
+.NavItems {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.NavItem {
+  @include borders;
+  @include buttons(#f9f9f9, #7b7b7b);
+  cursor: pointer;
+  padding: 5px 15px;
+  margin: 0 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

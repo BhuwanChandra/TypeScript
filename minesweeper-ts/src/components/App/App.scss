@@ -1,5 +1,12 @@
 @import "../../styles/index.scss";
 
+.GameArea {
+  min-height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .App {
   background-color: #c3c3c3;
   padding: 16px;

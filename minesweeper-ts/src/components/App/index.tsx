@@ -204,18 +204,20 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
-      <div className="Header">
-        <NumberDisplay value={bombCounter} />
-        <div className="Face" onClick={handleFaceClick}>
-          <span role="img" aria-label="face">
-            {face}
-          </span>
+    <div className="GameArea">
+      <div className="App">
+        <div className="Header">
+          <NumberDisplay value={bombCounter} />
+          <div className="Face" onClick={handleFaceClick}>
+            <span role="img" aria-label="face">
+              {face}
+            </span>
+          </div>
+          <NumberDisplay value={time} />
         </div>
-        <NumberDisplay value={time} />
-      </div>
-      <div className="Body" style={bodyStyle}>
-        {renderCells()}
+        <div className="Body" style={bodyStyle}>
+          {renderCells()}
+        </div>
       </div>
     </div>
   );
