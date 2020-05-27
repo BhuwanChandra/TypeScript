@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({ row, col, state, value, onClick, onCont
       if (value === CellValue.bomb) {
         return (
           <span role="img" aria-label="bomb">
-            😈
+            💣
           </span>
         );
       } else if (value === CellValue.none) {

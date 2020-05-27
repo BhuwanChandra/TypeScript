@@ -1,3 +1,3 @@
-export const MAX_ROWS = 9;
-export const MAX_COLS = 9;
-export const NO_OF_BOMBS = 50;
+export const MAX_ROWS = 15;
+export const MAX_COLS = 15;
+export const NO_OF_BOMBS = 30;
